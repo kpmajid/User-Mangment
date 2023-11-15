@@ -3,7 +3,6 @@ const User = require("../models/User");
 const login = async (req, res) => {
   try {
     const { email, password } = req.body;
-
     if (!email || !password) {
       return res
         .status(400)
@@ -25,7 +24,7 @@ const login = async (req, res) => {
       name: user.name,
     };
 
-    console.log(`login success { id: user._id, name: user.name }`);
+   
     res.status(200).redirect("/home");
   } catch (error) {}
 };

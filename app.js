@@ -24,4 +24,7 @@ app.use(
 const userRoutes = require("./routes/userRoutes");
 app.use("/", userRoutes);
 
+const adminRoutes = require("./routes/adminRoutes");
+app.use("/admin", adminRoutes);
+
 app.listen(3000);

@@ -5,7 +5,7 @@ const loadEdit = async (req, res) => {
   
   const userData = await User.findById({ _id: id }).select("-password");
 
-  res.status(200).render("edit.ejs", { data: userData });
+  res.status(200).render("editUser.ejs", { data: userData });
 };
 
 const editUser = async (req, res) => {
@@ -22,7 +22,7 @@ const editUser = async (req, res) => {
       runValidators: true,
     }
   );
-  res.redirect("/home");
+  res.redirect("/admin/dashboard");
 };
 
 module.exports = { loadEdit, editUser };
