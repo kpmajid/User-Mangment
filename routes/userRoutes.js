@@ -1,28 +1,38 @@
 const express = require("express");
 const router = express.Router();
 
-const { loadRegister, register }=require('../controllers/registerController')
+const { loadRegister, register } = require("../controllers/registerController");
+const { loadLogin, login } = require("../controllers/loginController");
+const { loadHome } = require("../controllers/userHomeController");
+const { isLogin, isLogout } = require("../middleware/auth");
 
-router.get("/", (req, res) => {
-  res.status(200).render("login.ejs");
-});
+const { loadEdit, editUser } = require("../controllers/editController");
 
-router.post("/", (req, res) => {
-  const { username, password } = req.body;
-  if (username == "majid" && password == "123") {
-    res.status(200).render("home.ejs", { username, password });
-  } else {
-    res.redirect("/");
+router.get("/", isLogout, loadLogin);
+router.post("/", login);
+
+router.get("/register", isLogout, loadRegister);
+router.post("/register", register);
+
+router.get("/home", isLogin, loadHome);
+
+router.get("/edit/:id", isLogin, loadEdit);
+router.post("/edit/:id", editUser);
+
+router.get("/logout", (req, res) => {
+  try {
+    console.log(`logout ${req.session.user}`);
+    req.session.destroy((err) => {
+      if (err) {
+        res.send("Oops something went wrong, please try again");
+      } else {
+        console.log(req.session);
+        res.redirect("/");
+      }
+    });
+  } catch (error) {
+    console.log(error.message);
   }
-});
-
-router.get("/register", (req, res) => {
-  res.status(200).render("register.ejs");
-});
-
-router.post("/register", (req, res) => {
-  const { username, password } = req.body;
-  res.send({ username, password });
 });
 
 module.exports = router;

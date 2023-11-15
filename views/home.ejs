@@ -9,8 +9,39 @@
 </head>
 
 <body>
-    <h2>Home <%= locals.username || 'User' %>
+    <h2>Home <%= locals.data.name %>
     </h2>
+
+    <table>
+        <tr>
+            <td>Name</td>
+            <td>
+                <%= locals.data.name %>
+            </td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td>
+                <%= locals.data.email %>
+            </td>
+        </tr>
+        <tr>
+            <td>Phone Number</td>
+            <td>
+                <%= locals.data.phoneNum %>
+            </td>
+        </tr>
+    </table>
+    <div>
+        <a href="/edit/<%= locals.data._id %>">Edit</a>
+    </div>
+    <div>
+        <% if (locals.msg) { %>
+            <%= locals.msg %>
+                <% } %>
+
+    </div>
+    <a href="/logout">logout</a>
 </body>
 
 </html>

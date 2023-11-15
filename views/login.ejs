@@ -11,8 +11,8 @@
 <body>
     <h1>Login</h1>
     <form action="/" method="post">
-        <label for="username">Username:</label>
-        <input type="text" name="username">
+        <label for="email">Email:</label>
+        <input type="text" name="email">
         <br>
         <label for="password">Password:</label>
         <input type="password" name="password">
@@ -20,7 +20,9 @@
         <button type="submit">Login</button>
     </form>
     <a href="/register">Register</a>
-
+    <div>
+        <%= locals.msg || " " %>
+    </div>
 </body>
 
 </html>
