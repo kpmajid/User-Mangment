@@ -1,11 +1,12 @@
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
 
-const register = async (req, res) => {
+const addUser = async (req, res) => {
   try {
     const user = await User.create({ ...req.body });
-    res.status(201).render("register", { msg: "Registration successful" });
+    res.status(201).render("addUser", { msg: "Registration successful" });
   } catch (error) {
+    // Check if the error is a validation error
     if (error.name === "ValidationError") {
       const errorMessages = Object.values(error.errors).map((e) => e.message);
       return res.status(400).render("register", { errorMessages });
@@ -16,8 +17,8 @@ const register = async (req, res) => {
   }
 };
 
-const loadRegister = (req, res) => {
-  res.status(200).render("register");
+const loadAddUser = (req, res) => {
+  res.status(200).render("addUser");
 };
 
-module.exports = { loadRegister, register };
+module.exports = { loadAddUser, addUser };

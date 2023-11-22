@@ -21,12 +21,10 @@ router.post("/edit/:id", editUser);
 
 router.get("/logout", (req, res) => {
   try {
-    
     req.session.destroy((err) => {
       if (err) {
         res.send("Oops something went wrong, please try again");
       } else {
-        
         res.redirect("/");
       }
     });

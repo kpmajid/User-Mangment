@@ -1,3 +1,4 @@
+const nocache = require("nocache");
 const mongoose = require("mongoose");
 mongoose.connect("mongodb://127.0.0.1:27017/USER-MANAGEMENT");
 
@@ -12,6 +13,8 @@ app.use(
     extended: true,
   })
 );
+
+app.use(nocache());
 
 app.use(
   session({
