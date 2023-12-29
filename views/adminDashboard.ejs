@@ -19,6 +19,14 @@
             <div class="pb-2 text-end">
                 <a class="btn btn-danger" href="/admin/logout">Logout</a>
             </div>
+            <form class="input-group m-3 d-flex justify-content-end px-4" action="/admin/dashboard" method="get">
+                <div class="form-outline">
+                    <input type="search" id="form1" class="form-control" placeholder=" Search user..." name="search" />
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-search">search</i>
+                </button>
+            </form>
             <table class="table">
                 <tr>
                     <th>No</th>
